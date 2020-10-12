@@ -14,7 +14,7 @@
 #### Docker
 É uma plataforma aberta, criada com o objetivo de facilitar o desenvolvimento, a implantação e a execução de aplicações em ambientes isolados. 
 
-#### Isolamento
+##### Isolamento
 O modelo de isolamento utilizado no Docker é a virtualização a nível do sistema operacional, um método de virtualização 
 onde o kernel do sistema operacional permite que múltiplos processos sejam executados isoladamente no mesmo host.
 O container tem visão apenas do processo e não da máquina física.
@@ -112,9 +112,42 @@ $ docker-compose up
 
 ## Deploy do app no Heroku
 #### O que é o Heroku
+Heroku é uma _Plataform as a Service_ - __PaaS__, que permite desenvolvedores a construir, executar e operar aplicações inteiras 
+em cloud. PaaS é um tipo de computação em nuvem que permite aos desenvolvedores não se preocuparem com aspectos
+da infra estrutura como provisionar instâncias, criar redes privadas e públicas e vários outros detalhes. Visa facilitar o processo de desenvolvimento
+colocando toda infra disponível e o desenvolvedor focar apenas na evolução da software.
+Heroku permite o deploy de aplicações em várias linguagens:
+- Java
+- Node.js
+- Scala
+- Clojure
+- Python
+- PHP
+- Go
+
 #### Criar conta quem não tem
-#### Criar app na plataforma
+Para criar uma conta basta acessar o seguinte link: https://signup.heroku.com
+
+#### Criar um app na plataforma
 #### Fazer a publicação diretamente
+##### Instalar Heroku CLI
+Link para download e passos para instalação: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+##### Login
+```shell script
+$ heroku login
+```
+
+##### Push Apps
+```shell script
+$ heroku container:push web --app <app_name>
+$ heroku container:release web -a <app_name>
+```
+
+##### Visualizar Logs
+```shell script
+$ heroku logs --tail -a <app_name>
+```
 
 ## Construir um CI/CD no GitHub Actions
 #### Definir um flow para executar os testes - CI
