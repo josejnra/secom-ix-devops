@@ -5,6 +5,11 @@
 
 ## Criar uma aplicação Flask
 #### Uma aplicação básica
+Instalar dependências para formulário:
+```
+flask-wtf
+email-validator
+```
 #### Validar uma entrada de dados - nome e idade
 #### Criar uma forma de validação de entrada
 #### Criar testes unitários para as rotas criadas
