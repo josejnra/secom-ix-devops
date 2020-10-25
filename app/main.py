@@ -31,8 +31,8 @@ def imc_route():
     return render_template('imc_calc.jinja2', form=form)
 
 
-def imc_calc(altura: float, peso: float) -> float:
-    return round(peso/altura**2)
+def imc_calc(peso: float, altura: float) -> float:
+    return round(peso/altura**2, 2)
 
 
 @app.errorhandler(Exception)
