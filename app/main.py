@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request
 
-from app.form import ContactForm
+from app.form import ContactForm, IMCForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'who-let-the-dogs-out'
@@ -26,7 +26,21 @@ def contact():
         else:
             return render_template('contact.jinja2', form=form, status='error', message=form.errors)
 
-    return render_template('contact.jinja2', form=form)
+    return render_template('contact.jinja2', form=form, status=None, message=None)
+
+
+@app.route('/imc', methods=['GET', 'POST'])
+def imc_calc():
+    form = IMCForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            imc = round(form.peso.data / (form.altura.data**2), 2)
+            return render_template('imc_result.jinja2', imc_result=imc)
+        else:
+            return render_template('imc_calc.jinja2', form=form, status='error', message=form.errors)
+
+    return render_template('imc_calc.jinja2', form=form, status=None, message=None)
 
 
 @app.route('/test')
