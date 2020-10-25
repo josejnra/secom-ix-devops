@@ -11,13 +11,9 @@ def index():
     return render_template("index.html")
 
 
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            return redirect(url_for('send_message', status="success", message="Mensagem enviada com sucesso!"))
-        else:
-            return render_template('contact.jinja2', form=form, status='error', message=form.errors)
-
-    return render_template('contact.jinja2', form=form, status=None, message=None)
+@app.route('/error')
+def error():
+    return render_template("error.jinja2")
 
 
 @app.route('/imc', methods=['GET', 'POST'])
