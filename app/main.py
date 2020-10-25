@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 from app.form import IMCForm
 
@@ -8,26 +8,36 @@ app.config['SECRET_KEY'] = 'who-let-the-dogs-out'
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.jinja2")
 
 
 @app.route('/error')
-def error():
-    return render_template("error.jinja2")
+@app.route('/error/<error_message>')
+def error(error_message=None):
+    return render_template("error.jinja2", error=error_message)
 
 
 @app.route('/imc', methods=['GET', 'POST'])
-def imc_calc():
+def imc_route():
     form = IMCForm()
 
     if request.method == 'POST':
         if form.validate_on_submit():
-            imc = round(form.peso.data / (form.altura.data**2), 2)
+            imc = imc_calc(form.peso.data, form.altura.data)
             return render_template('imc_result.jinja2', imc_result=imc)
         else:
-            return render_template('imc_calc.jinja2', form=form)
+            return redirect(url_for('error', error_message=form.errors))
 
     return render_template('imc_calc.jinja2', form=form)
+
+
+def imc_calc(altura: float, peso: float) -> float:
+    return round(peso/altura**2)
+
+
+@app.errorhandler(Exception)
+def all_exception_handler(error_):
+    return redirect(url_for('error', error_message=error_))
 
 
 if __name__ == '__main__':

@@ -12,10 +12,16 @@
                     <h2>
                         500 Internal Server Error</h2>
                     <div class="error-details">
-                        Desculpe, ocorreu algum erro. Iremos verificar o problema, tente novamente.
+                        Desculpe, ocorreu algum erro.
+                        Iremos verificar o problema, tente novamente e caso persista tente mais tarde.
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {% if error %}
+        <h1>{{ error }}</h1>
+    {% endif %}
+
 {% endblock %}
