@@ -21,10 +21,9 @@
       <!-- Navbar -->
       <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand"><a class="nav" href="/">My App</a></h3>
+          <h3 class="masthead-brand"><a class="nav text-decoration-none" href="/">My App</a></h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link active" href="contact">Contact</a>
             <a class="nav-link active" href="imc">IMC</a>
           </nav>
         </div>
@@ -33,18 +32,6 @@
       <!--Content-->
       <main role="main" class="inner cover">
         {% block content %}{% endblock %}
-
-        {% if status == 'success' %}
-          <div class="alert alert-success">
-              <strong>{{ message }}</strong>
-          </div>
-        {% endif %}
-
-        {% if status == 'error' %}
-          <div class="alert alert-warning">
-                <strong>{{ message }}</strong>
-          </div>
-        {% endif %}
       </main>
 
       <!--Footer-->
