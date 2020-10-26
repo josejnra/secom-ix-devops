@@ -14,6 +14,44 @@ email-validator
 #### Criar uma forma de validação de entrada
 #### Criar testes unitários para as rotas criadas
 #### Criar testes utilizando mock
+Módulo `a.py`:
+```python
+import requests
+
+
+def wget_google():
+    print(requests.get(url='http://www.google.com').text)
+
+
+class A:
+
+    def metodo_a(self):
+        print('executando metodo_a')
+
+    def metodo_b(self):
+        print('executando metodo_b')
+```
+Módulo test_exemplos.py
+```python
+from a import A
+from unittest import mock, TestCase
+
+class TestExamplesCase(TestCase):
+
+    @mock.patch("app.tests.a.A.metodo_a")
+    def test_a(self, metodo_a):
+        metodo_a.side_effect = print('executando metodo mockado')
+        a_instance = A()
+        a_instance.metodo_a()
+        a_instance.metodo_b()
+
+    @mock.patch("app.tests.a.wget_google", return_value="Site não encontrado")
+    @mock.patch("app.tests.a.requests.get", side_effect=print('Não encontrou o site'))
+    def test_requests(self, get, wget_google):
+        print(wget_google())
+        wget_google()
+
+```
 
 ## Conteinerização da aplicação
 #### Docker
