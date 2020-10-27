@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-from app.form import IMCForm
+from form import IMCForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'who-let-the-dogs-out'

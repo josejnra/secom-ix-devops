@@ -4,8 +4,8 @@ from unittest import mock
 
 from werkzeug.datastructures import MultiDict
 
-from app.form import IMCForm
-from app.main import imc_calc, app
+from form import IMCForm
+from main import imc_calc, app
 
 
 class IMCFormulaCalcCase(unittest.TestCase):
@@ -35,8 +35,8 @@ class TestRotasCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
-    @mock.patch("app.main.IMCForm")
-    @mock.patch("app.main.redirect")
+    @mock.patch("main.IMCForm")
+    @mock.patch("main.redirect")
     def test_imc_validate_eh_falso(self, mock_redirect, MockICMForm):
         error_message = "DEU RUIM"
         mock_redirect.return_value = error_message
