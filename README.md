@@ -7,8 +7,8 @@
 #### Uma aplicação básica
 Instalar dependências para formulário:
 ```
+flask
 flask-wtf
-email-validator
 ```
 #### Validar uma entrada de dados - nome e idade
 #### Criar uma forma de validação de entrada
@@ -157,7 +157,19 @@ $ docker-compose up
 
 
 #### Criar Dockerfile
+##### Construir imagem
+```shell script
+$ docker build -t app-secom:1.0 .
+```
+##### Executar Container
+```shell script
+$ docker container run -it --name meu_app -p 5000:5000 app-secom:1.0 
+```
 #### Criar Docker-compose
+```shell script
+$ docker-compose up -d
+$ docker-compose down
+```
 
 ## Deploy do app no Heroku
 #### O que é o Heroku
