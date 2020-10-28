@@ -219,3 +219,16 @@ $ heroku logs --tail -a <app_name>
 #### Separar projeto em branchs master e dev
 #### Criar regras para aprovação de merge
 #### Criar pull request e marcar alguém para realizar o review
+
+
+## Sugestões
+> Flake8
+
+Ferramenta de Lint. Verificar se o código segue boas práticas recomendadas, apontar eventuais erros e ajudar a limpá-lo.
+https://flake8.pycqa.org/en/latest/
+
+> Monitoramento de Log
+- Elasticsearch: para armazenar logs
+- Kibana: para visualizar e configurar alarmes
+
+Além de seguir padrões de projetos, Design Patterns, princípios SOLID, organização da estrutura do projeto, etc.
