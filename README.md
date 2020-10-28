@@ -10,9 +10,8 @@ Instalar dependências para formulário:
 flask
 flask-wtf
 ```
-#### Validar uma entrada de dados - nome e idade
-#### Criar uma forma de validação de entrada
-#### Criar testes unitários para as rotas criadas
+#### Criar um formulário básico para cálculo de IMC com validação de entrada
+#### Criar testes unitários
 #### Criar testes utilizando mock
 Módulo `a.py`:
 ```python
@@ -38,15 +37,15 @@ from unittest import mock, TestCase
 
 class TestExamplesCase(TestCase):
 
-    @mock.patch("app.tests.a.A.metodo_a")
+    @mock.patch("a.A.metodo_a")
     def test_a(self, metodo_a):
         metodo_a.side_effect = print('executando metodo mockado')
         a_instance = A()
         a_instance.metodo_a()
         a_instance.metodo_b()
 
-    @mock.patch("app.tests.a.wget_google", return_value="Site não encontrado")
-    @mock.patch("app.tests.a.requests.get", side_effect=print('Não encontrou o site'))
+    @mock.patch("a.wget_google", return_value="Site não encontrado")
+    @mock.patch("a.requests.get", side_effect=print('Não encontrou o site'))
     def test_requests(self, get, wget_google):
         print(wget_google())
         wget_google()
@@ -189,8 +188,6 @@ Heroku permite o deploy de aplicações em várias linguagens:
 #### Criar conta quem não tem
 Para criar uma conta basta acessar o seguinte link: https://signup.heroku.com
 
-#### Criar um app na plataforma
-#### Fazer a publicação diretamente
 ##### Instalar Heroku CLI
 Link para download e passos para instalação: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 
@@ -211,9 +208,13 @@ $ heroku logs --tail -a <app_name>
 ```
 
 ## Construir um CI/CD no GitHub Actions
+
 #### Definir um flow para executar os testes - CI
+> test.yml
+
 #### Incrementar o flow para realizar o deploy
-#### Definir um workflow para fazer deploy apenas na branch master
+Realizar deploy apenas na branch master
+> test-deploy.yml
 
 ## Code Review
 #### Separar projeto em branchs master e dev
