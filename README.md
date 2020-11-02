@@ -209,6 +209,11 @@ Link para download e passos para instalação: https://devcenter.heroku.com/arti
 $ heroku login
 ```
 
+##### Login para Container
+```shell script
+$ heroku container:login
+```
+
 ##### Push Apps
 ```shell script
 $ heroku container:push web --app <app_name>
