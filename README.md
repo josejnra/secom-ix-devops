@@ -13,7 +13,7 @@ flask-wtf
 #### Criar um formulário básico para cálculo de IMC com validação de entrada
 #### Criar testes unitários
 #### Criar testes utilizando mock
-Módulo `a.py`:
+Módulo `exemplo.py`:
 ```python
 import requests
 
@@ -30,24 +30,37 @@ class A:
     def metodo_b(self):
         print('executando metodo_b')
 ```
-Módulo test_exemplos.py
+Módulo tests.py
 ```python
-from a import A
+
+from exemplo import A, wget_google
 from unittest import mock, TestCase
+
 
 class TestExamplesCase(TestCase):
 
-    @mock.patch("a.A.metodo_a")
-    def test_a(self, metodo_a):
+    # mock de uma método de classe
+    @mock.patch("exemplo.A.metodo_a")
+    def test_mock_metodo_a_apenas(self, metodo_a):
         metodo_a.side_effect = print('executando metodo mockado')
         a_instance = A()
+
         a_instance.metodo_a()
+
         a_instance.metodo_b()
 
-    @mock.patch("a.wget_google", return_value="Site não encontrado")
-    @mock.patch("a.requests.get", side_effect=print('Não encontrou o site'))
-    def test_requests(self, get, wget_google):
-        print(wget_google())
+    # mock comportamento de função
+    @mock.patch("exemplo.wget_google")
+    def test_mock_retorno_funcao(self, wget_google):
+        wget_google.side_effect = print('Site não encontrado')
+        wget_google()
+
+    # mock retorno de uma funcao
+    @mock.patch("exemplo.requests.get")
+    def test_requests(self, get):
+        # get retorna um MagicMock
+        # mock do atributo text do objeto retornado por get
+        get().text = 'Site Fake.'
         wget_google()
 
 ```
