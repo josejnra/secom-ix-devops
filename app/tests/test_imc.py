@@ -37,7 +37,7 @@ class TestRotasCase(unittest.TestCase):
 
     @mock.patch("main.IMCForm")
     @mock.patch("main.redirect")
-    def test_imc_validate_eh_falso(self, mock_redirect, MockICMForm):
+    def test_imc_validate_campo_incorreto(self, mock_redirect, MockICMForm):
         error_message = "DEU RUIM"
         mock_redirect.return_value = error_message
         form = MockICMForm()
@@ -55,7 +55,6 @@ class TestIMCFormCase(unittest.TestCase):
 
     def setUp(self):
         app.config['WTF_CSRF_ENABLED'] = False
-        self.app = app.test_client()
 
     def test_atributo_em_string(self):
         with app.test_request_context():

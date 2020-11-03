@@ -64,6 +64,15 @@ class TestExamplesCase(TestCase):
         wget_google()
 
 ```
+#### Exercício
+##### Criar novo formulário
+Nesta aplicação deverá um campo em que o usuário irá inserir uma frase e a aplicação deverá informar quantas palvras há no texto informado.
+Exemplos de testes:
+- Caso não seja inserido nenhuma palavra
+- Caso seja inserido apenas caracteres como: ``, + - ; :``
+- Apenas números
+- Uma palavra
+- Muitas palavras
 
 ## Conteinerização da aplicação
 #### Docker
