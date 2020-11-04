@@ -243,6 +243,10 @@ $ heroku logs --tail -a <app_name>
 Realizar deploy apenas na branch master
 > test-deploy.yml
 
+No secrets do projeto definir a chave `HEROKU_API_KEY` com o valor obtido do seguinte comando:
+```shell script
+$ heroku authorizations:create 
+```
 ## Code Review
 #### Separar projeto em branchs master e dev
 #### Criar regras para aprovação de merge
