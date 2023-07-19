@@ -5,10 +5,10 @@
 
 ## Criar uma aplicação Flask
 #### Uma aplicação básica
-Instalar dependências para formulário:
-```
-flask
-flask-wtf
+Instalar poetry e dependências do projeto:
+```shell
+pip install poetry
+poetry install
 ```
 #### Criar um formulário básico para cálculo de IMC com validação de entrada
 #### Criar testes unitários
@@ -172,6 +172,7 @@ services:
 ```
 E executar com:
 ```shell script
+$ poetry export --without-hashes -o requirements.txt
 $ docker-compose up
 ```
 > Docker Registry - [Docker Hub](https://hub.docker.com)
