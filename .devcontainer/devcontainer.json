@@ -1,0 +1,68 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	// binding .ssh dir into dev container for fixing issue with git
+	// "mounts": [
+	// 	"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+	// 	"source=${localWorkspaceFolder}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+	// 	"source=${localWorkspaceFolder}/.awsvault,target=/home/vscode/.awsvault,type=bind,consistency=cached"
+	// ],
+
+	"runArgs": ["--name=vscode-secom-ix-devops"],
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"dockerDashComposeVersion": "v2"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"ms-python.python",
+				"ms-python.autopep8",
+				"ms-python.flake8",
+				"ms-python.pylint",
+				"ms-python.vscode-pylance",
+				"ms-python.mypy-type-checker",
+				"eamodio.gitlens",
+				"waderyan.gitblame",
+				"emeraldwalk.RunOnSave",
+				"ryanluker.vscode-coverage-gutters",
+				"tamasfe.even-better-toml"
+			],
+			"settings": {
+				"terminal.integrated.scrollback": 10000,
+				"terminal.integrated.profiles.linux": {
+					"poetry-shell": {
+						"path": "poetry",
+						"args": ["shell"]
+					}
+				},
+				// "terminal.integrated.defaultProfile.linux": "poetry-shell",  # spawns a terminal on top of sh 
+				"python.defaultInterpreterPath": "/workspaces/python/.venv/bin/python",
+				"mypy.dmypyExecutable": "/workspaces/python/.venv/bin/dmypy",
+				"mypy-type-checker.path": ["/workspaces/python/.venv/bin/mypy"],
+				"python.testing.pytestPath": "/workspaces/python/.venv/bin/pytest",
+				"flake8.interpreter": ["/workspaces/python/.venv/bin/flake8"],
+				"flake8.path": ["/workspaces/python/.venv/bin/flake8"]
+			}
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "sh ./.devcontainer/setup.sh",
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode"
+}
